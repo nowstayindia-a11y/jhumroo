@@ -592,7 +592,7 @@ export const getDefaultAdminConfig = () => ({
   },
   navigation: {
     bottomNav: [
-      { path: '/', label: 'Home', icon: 'home', type: 'link' },
+      { path: '/user', label: 'Home', icon: 'home', type: 'link' },
       { path: '/search', label: 'Discover', icon: 'search', type: 'link' },
       { path: '/create', label: 'Create', type: 'create' },
       { path: '/inbox', label: 'Inbox', icon: 'inbox', type: 'link', badge: 12 },

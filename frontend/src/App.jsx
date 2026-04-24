@@ -82,7 +82,7 @@ const MainLayout = ({ onLogout }) => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/user" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/search/hashtag/:tagSlug" element={<SearchHashtagPage />} />
         <Route path="/create" element={<CreatePage />} />
@@ -158,12 +158,12 @@ const AppContent = () => {
 
     const handleOnboardingComplete = () => {
         setAppState('main');
-        navigate('/', { replace: true });
+        navigate('/user', { replace: true });
     };
 
     const handleLogout = () => {
-        // Logout ke baad home page pe le jao, login page pe nahi
-        navigate('/', { replace: true });
+        // Logout ke baad /user page pe le jao
+        navigate('/user', { replace: true });
     };
 
     return (
@@ -176,6 +176,7 @@ const AppContent = () => {
                     ) : (
                         <>
                           <Route path="/admin/*" element={<AdminLayout />} />
+                          <Route path="/" element={<WebsiteLandingPage />} />
                           <Route path="/website/*" element={<WebsiteLandingPage />} />
                           <Route path="/welcome" element={<AuthPage onComplete={handleAuthComplete} initialMode="signup" />} />
                           <Route path="/login" element={<AuthPage onComplete={handleAuthComplete} initialMode="login" />} />

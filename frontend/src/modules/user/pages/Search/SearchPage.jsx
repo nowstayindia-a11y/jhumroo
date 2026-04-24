@@ -137,7 +137,7 @@ const SearchPage = () => {
       return;
     }
 
-    navigate('/');
+    navigate('/user');
   };
 
   const handleDraftChange = (nextValue) => {

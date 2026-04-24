@@ -49,7 +49,7 @@ const HomePage = () => {
     setCurrentTab(nextTab);
 
     if (isSearchFeed) {
-      navigate('/', { replace: true });
+      navigate('/user', { replace: true });
     }
   };
 

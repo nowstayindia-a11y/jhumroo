@@ -479,7 +479,7 @@ const CreatePage = () => {
       return;
     }
 
-    navigate('/');
+    navigate('/user');
   };
 
   const handleStartOrStopRecording = () => {

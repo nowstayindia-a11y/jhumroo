@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { BiUser, BiChevronLeft } from 'react-icons/bi';
+import { BiUser, BiChevronLeft, BiX } from 'react-icons/bi';
 import { FaFacebook, FaApple, FaGoogle, FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -117,6 +117,7 @@ const AuthPage = ({ onComplete, initialMode = 'signup' }) => {
   const location = useLocation();
   const { config } = useAppContent();
   const months = config?.auth?.months || DEFAULT_MONTHS;
+  const [otpToast, setOtpToast] = useState('');
 
   // Set mode based on current URL path
   const [mode, setMode] = useState(location.pathname === '/login' ? 'login' : initialMode);
@@ -175,7 +176,7 @@ const AuthPage = ({ onComplete, initialMode = 'signup' }) => {
       document.activeElement.blur();
     }
     onComplete();
-    navigate('/');
+    navigate('/user');
   }, [onComplete, navigate]);
 
   /* ─── Step 1: New Welcome Screen ─── */
@@ -452,6 +453,8 @@ const AuthPage = ({ onComplete, initialMode = 'signup' }) => {
                   onNext={(phone, otp) => {
                     setPhoneNumber(phone);
                     setGeneratedOtp(otp);
+                    setOtpToast(otp);
+                    setTimeout(() => setOtpToast(''), 5000);
                     setStep(5);
                   }}
                   onBack={() => setStep(mode === 'signup' ? 3 : 2)}
@@ -463,13 +466,40 @@ const AuthPage = ({ onComplete, initialMode = 'signup' }) => {
                   generatedOtp={generatedOtp}
                   onVerifySuccess={handleAuthSuccess}
                   onBack={() => setStep(4)}
-                  onRegenerateOtp={(newOtp) => setGeneratedOtp(newOtp)}
+                  onRegenerateOtp={(newOtp) => {
+                    setGeneratedOtp(newOtp);
+                    setOtpToast(newOtp);
+                    setTimeout(() => setOtpToast(''), 5000);
+                  }}
                   isThemed={true}
                 />
               )}
             </div>
           </div>
         </div>
+
+        {/* Temporary OTP Toast */}
+        {otpToast && (
+          <div className="fixed bottom-10 left-4 right-4 z-[10000] animate-bounce">
+            <div className="bg-gradient-to-r from-[#fe2c55] to-[#ff6b8b] text-white p-4 rounded-2xl shadow-2xl flex items-center justify-between border border-white/20 backdrop-blur-md">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <span className="text-xl">🔑</span>
+                </div>
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-wider opacity-80">Verification Code</p>
+                  <p className="text-[24px] font-black tracking-[4px]">{otpToast}</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setOtpToast('')}
+                className="bg-white/20 hover:bg-white/30 p-2 rounded-full transition-colors"
+              >
+                <BiX size={20} />
+              </button>
+            </div>
+          </div>
+        )}
       </BackgroundWrapper>
     );
   }

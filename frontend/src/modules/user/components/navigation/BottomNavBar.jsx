@@ -72,7 +72,7 @@ const BottomNavBar = ({ isDarkTheme = true }) => {
   const { config } = useAppContent();
   const location = useLocation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const isHomePage = location.pathname === '/';
+  const isHomePage = location.pathname === '/user';
   const usesDarkNavAppearance = isDarkMode || isHomePage;
   const navItems = useMemo(() => {
     const items = config?.navigation?.bottomNav || [];
@@ -90,7 +90,7 @@ const BottomNavBar = ({ isDarkTheme = true }) => {
       if (item.path === '/profile') {
         return location.pathname === '/profile' || /^\/user\/[^/]+$/.test(location.pathname);
       }
-      if (item.path === '/') return location.pathname === '/';
+      if (item.path === '/user') return location.pathname === '/user';
       return location.pathname.startsWith(item.path);
     });
 

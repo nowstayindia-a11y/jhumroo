@@ -39,7 +39,7 @@ const SoundPage = () => {
       {/* Header */}
       <div className={`flex items-center justify-between px-4 pt-4 pb-3 border-b shrink-0 ${isDarkMode ? 'border-white/10' : 'border-black/10'}`}>
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/user')}
           className={`w-8 h-8 flex items-center justify-center active:opacity-60 ${isDarkMode ? 'text-white' : 'text-black'}`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
