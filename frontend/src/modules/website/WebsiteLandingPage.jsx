@@ -24,6 +24,10 @@ import LandingImg from '../../assets/landing.png';
 
 const WebsiteLandingPage = () => {
   const [isTermsOpen, setIsTermsOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isContactOpen, setIsContactOpen] = React.useState(false);
+  const [isRefundOpen, setIsRefundOpen] = React.useState(false);
+  const [isSafetyOpen, setIsSafetyOpen] = React.useState(false);
 
   useEffect(() => {
     document.body.classList.add('app-website-route');
@@ -70,6 +74,134 @@ const WebsiteLandingPage = () => {
         </div>
       )}
 
+      {/* Contact Modal */}
+      {isContactOpen && (
+        <div className="w-modal-overlay" onClick={() => setIsContactOpen(false)}>
+          <div className="w-modal-container" onClick={e => e.stopPropagation()}>
+            <div className="w-modal-header">
+              <h2>Contact Us</h2>
+              <div className="w-modal-close" onClick={() => setIsContactOpen(false)}>
+                <FiX />
+              </div>
+            </div>
+            <div className="w-modal-body">
+              <p>Have a question, feedback, or a business inquiry? Fill out the form below and our team will get back to you shortly.</p>
+              
+              <form className="w-contact-form" onSubmit={(e) => { e.preventDefault(); setIsContactOpen(false); alert('Message sent successfully!'); }}>
+                <div className="w-form-row">
+                  <div className="w-form-group">
+                    <label htmlFor="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required />
+                  </div>
+                  <div className="w-form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Enter your email" required />
+                  </div>
+                </div>
+                
+                <div className="w-form-row">
+                  <div className="w-form-group">
+                    <label htmlFor="username">Username (Optional)</label>
+                    <input type="text" id="username" placeholder="@username" />
+                  </div>
+                  <div className="w-form-group">
+                    <label htmlFor="subject">Subject</label>
+                    <select id="subject" required>
+                      <option value="">Select a subject...</option>
+                      <option value="support">General Support</option>
+                      <option value="feedback">Feedback & Suggestions</option>
+                      <option value="business">Business Inquiry</option>
+                      <option value="report">Report a Problem</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div className="w-form-group">
+                  <label htmlFor="message">Message</label>
+                  <textarea id="message" rows="4" placeholder="How can we help you?" required></textarea>
+                </div>
+                
+                <div className="w-hero-actions" style={{ marginTop: '30px' }}>
+                  <button type="submit" className="w-btn-primary" style={{ width: '100%' }}>Send Message</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Refund Policy Modal */}
+      {isRefundOpen && (
+        <div className="w-modal-overlay" onClick={() => setIsRefundOpen(false)}>
+          <div className="w-modal-container" onClick={e => e.stopPropagation()}>
+            <div className="w-modal-header">
+              <h2>Refund Policy</h2>
+              <div className="w-modal-close" onClick={() => setIsRefundOpen(false)}>
+                <FiX />
+              </div>
+            </div>
+            <div className="w-modal-body">
+              <p>At Jhumroo, we strive to provide the best digital experience. Please read our refund policy below regarding in-app purchases and subscriptions.</p>
+              
+              <h3>1. Digital Goods</h3>
+              <p>Since Jhumroo offers intangible, irrevocable digital goods (such as virtual coins, gifts, and premium filters), we do not issue refunds after the purchase is completed, except in specific cases outlined by consumer protection laws.</p>
+              
+              <h3>2. Accidental Purchases</h3>
+              <p>If an accidental purchase occurs, you must contact our support team within 48 hours. Refunds for accidental purchases are granted at the sole discretion of the Jhumroo team and only if the purchased digital items have not been used or transferred.</p>
+              
+              <h3>3. Subscription Cancellations</h3>
+              <p>You can cancel any premium subscription at any time. Your access will remain active until the end of your current billing period. We do not provide prorated refunds for canceled subscriptions.</p>
+              
+              <h3>4. Account Bans</h3>
+              <p>If your account is banned or suspended due to a violation of our Community Guidelines or Terms of Service, you forfeit any right to a refund for past purchases or remaining subscription time.</p>
+              
+              <h3>5. Contact Us</h3>
+              <p>If you believe you have been charged in error or have any questions about this policy, please reach out to our support team via the Contact Us form.</p>
+              
+              <div className="w-hero-actions" style={{ marginTop: '40px' }}>
+                 <button className="w-btn-primary" onClick={() => setIsRefundOpen(false)} style={{ width: '100%' }}>I Understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Safety Center Modal */}
+      {isSafetyOpen && (
+        <div className="w-modal-overlay" onClick={() => setIsSafetyOpen(false)}>
+          <div className="w-modal-container" onClick={e => e.stopPropagation()}>
+            <div className="w-modal-header">
+              <h2>Safety Center</h2>
+              <div className="w-modal-close" onClick={() => setIsSafetyOpen(false)}>
+                <FiX />
+              </div>
+            </div>
+            <div className="w-modal-body">
+              <p>Your safety is our top priority at Jhumroo. We are committed to providing a secure and positive environment for all our users. Here are some of our key safety features and resources:</p>
+              
+              <h3>1. Reporting Abuse & Violations</h3>
+              <p>If you encounter content or behavior that violates our Community Guidelines, you can easily report it directly from the app. Our moderation team reviews reports 24/7 to take swift action against inappropriate content, harassment, or bullying.</p>
+              
+              <h3>2. Privacy Controls</h3>
+              <p>You have full control over your experience. In your account settings, you can make your profile private, restrict who can comment on your videos, filter specific keywords, and block users you no longer wish to interact with.</p>
+              
+              <h3>3. Minor Safety & Parental Controls</h3>
+              <p>We restrict certain features for users under 18 to ensure their safety. Parents and guardians can also use our 'Family Pairing' features to manage screen time limits, restrict direct messaging, and manage content visibility for their teens.</p>
+              
+              <h3>4. Digital Well-being</h3>
+              <p>We encourage healthy app usage. You can set daily screen time limits and schedule 'Sleep Reminders' to help you manage the time you spend on Jhumroo.</p>
+              
+              <h3>5. Law Enforcement Support</h3>
+              <p>We cooperate with law enforcement agencies globally to respond to valid legal requests and ensure the safety of our users in emergency situations.</p>
+
+              <div className="w-hero-actions" style={{ marginTop: '40px' }}>
+                 <button className="w-btn-primary" onClick={() => setIsSafetyOpen(false)} style={{ width: '100%' }}>I Understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="w-nav">
         <Link to="/" className="w-logo">
@@ -78,11 +210,17 @@ const WebsiteLandingPage = () => {
           </div>
           Jhumroo
         </Link>
-        <div className="w-nav-links">
-          <a href="#features" className="w-nav-link">Features</a>
-          <a href="#about" className="w-nav-link">About</a>
-          <div className="w-nav-link" style={{ cursor: 'pointer' }} onClick={() => setIsTermsOpen(true)}>Terms & Conditions</div>
-          <Link to="/login" className="w-btn-primary">Get Started</Link>
+        <div className={`w-nav-links ${isMenuOpen ? 'active' : ''}`}>
+          <a href="#features" className="w-nav-link" onClick={() => setIsMenuOpen(false)}>Features</a>
+          <a href="#about" className="w-nav-link" onClick={() => setIsMenuOpen(false)}>About</a>
+          <div className="w-nav-link" style={{ cursor: 'pointer' }} onClick={() => { setIsTermsOpen(true); setIsMenuOpen(false); }}>Terms & Conditions</div>
+          <Link to="/login" className="w-btn-primary" onClick={() => setIsMenuOpen(false)}>Get Started</Link>
+        </div>
+        
+        {isMenuOpen && <div className="w-nav-overlay" onClick={() => setIsMenuOpen(false)}></div>}
+
+        <div className="w-menu-toggle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          {isMenuOpen ? <FiX /> : <div className="w-hamburger"><span></span><span></span><span></span></div>}
         </div>
       </nav>
 
@@ -230,16 +368,16 @@ const WebsiteLandingPage = () => {
           <div className="w-footer-links">
             <a href="#features" className="w-footer-link">How it works</a>
             <a href="#features" className="w-footer-link">Creator Fund</a>
-            <a href="#features" className="w-footer-link">Safety Center</a>
+            <div className="w-footer-link" style={{ cursor: 'pointer' }} onClick={() => setIsSafetyOpen(true)}>Safety Center</div>
           </div>
         </div>
 
         <div className="w-footer-col">
-          <h4>Support</h4>
+          <h4>Info and support</h4>
           <div className="w-footer-links">
-            <a href="#" className="w-footer-link">Help Center</a>
-            <a href="#" className="w-footer-link">Community Guidelines</a>
-            <a href="#" className="w-footer-link">Contact Us</a>
+            <div className="w-footer-link" style={{ cursor: 'pointer' }} onClick={() => setIsContactOpen(true)}>Contact Us</div>
+            <a href="mailto:Info@jhumroo.in" className="w-footer-link" style={{ marginTop: '10px' }}>Info@jhumroo.in</a>
+            <a href="tel:+919970907005" className="w-footer-link">Contact 9970907005</a>
           </div>
         </div>
 
@@ -249,6 +387,7 @@ const WebsiteLandingPage = () => {
             <a href="#about" className="w-footer-link">About Us</a>
             <div className="w-footer-link" style={{ cursor: 'pointer' }} onClick={() => setIsTermsOpen(true)}>Privacy Policy</div>
             <div className="w-footer-link" style={{ cursor: 'pointer' }} onClick={() => setIsTermsOpen(true)}>Terms of Service</div>
+            <div className="w-footer-link" style={{ cursor: 'pointer' }} onClick={() => setIsRefundOpen(true)}>Refund Policy</div>
           </div>
         </div>
       </footer>
@@ -256,7 +395,7 @@ const WebsiteLandingPage = () => {
       <div className="w-footer-bottom">
         <div>© 2026 Jhumroo. All Rights Reserved.</div>
         <div className="w-powered-by">
-          Powered by <strong>Vrushahi Holiday Inn</strong>
+          Powered by <strong>Vrushahi digital Entertainment Company</strong>
         </div>
       </div>
     </div>
